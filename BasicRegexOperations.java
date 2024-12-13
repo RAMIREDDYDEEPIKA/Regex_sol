@@ -20,7 +20,7 @@ public class BasicRegexOperations
             checkingPhnNum();
         }
         catch (InvalidUserInput e) {
-            throw new InvalidUserInput(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
