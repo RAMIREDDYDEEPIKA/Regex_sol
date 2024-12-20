@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class CheckEmail {
 
     public boolean isValidEmail(String email) {
-        String regex = "^[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,}$";
+        String regex = "^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-z]{2,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
@@ -31,8 +31,8 @@ public class CheckEmail {
         assertFalse(isValidEmail(email), "Expected email to be invalid, but it passed validation: " + email);
     }
 
-    static Stream<String> validEmailProvider() {
-        return Stream.of(
+    static List<String> validEmailProvider() {
+        return List.of(
                 "prana678@gmail.com",
                 "pooji.tha@bridge.co",
                 "prana_kolagani@gmail.org",
@@ -40,9 +40,8 @@ public class CheckEmail {
         );
     }
 
-    static Stream<String> invalidEmailProvider() {
-        return Stream.of(
-                "hari-sri",
+    static List<String> invalidEmailProvider() {
+        return List.of("hari-sri",
                 "usha@.com",
                 "@gmail.com",
                 "hashu@ibm,com",
